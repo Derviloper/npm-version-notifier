@@ -35,7 +35,7 @@ jobs:
               inputs: {
                 "file-path": "kubernetes/npm-version-notifier/values.yaml",
                 path: "image.tag",
-                value: "${{ steps.release.outputs.NEXT_RELEASE_VERSION }}",
+                value: '"${{ steps.release.outputs.NEXT_RELEASE_VERSION }}"',
               },
               owner: "Derviloper",
               ref: "main",
