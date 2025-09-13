@@ -2,7 +2,7 @@ import "dotenv/config";
 import { request } from "@octokit/request";
 import { RequestError } from "@octokit/request-error";
 import { CronJob } from "cron";
-import { ButtonStyle, ComponentType, WebhookClient } from "discord.js";
+import { WebhookClient } from "discord.js";
 import pacote from "pacote";
 
 if (!process.env.SPECS) {
@@ -100,19 +100,6 @@ async function getReleaseNotes(release: Release) {
 async function notify(release: Release) {
   const notes = await getReleaseNotes(release);
   await discordClient.send({
-    components: [
-      {
-        components: [
-          {
-            label: "test",
-            style: ButtonStyle.Link,
-            type: ComponentType.Button,
-            url: "https://google.de",
-          },
-        ],
-        type: ComponentType.ActionRow,
-      },
-    ],
     embeds: [
       {
         description: notes,
