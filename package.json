@@ -1,11 +1,11 @@
 {
-  "name": "npm-version-notifier",
-  "version": "1.0.0",
+  "name": "@derviloper/npm-version-notifier",
   "author": "Daniel da Silva",
   "type": "module",
   "scripts": {
     "dev": "tsdown -w",
     "build": "tsdown",
+    "release": "semantic-release",
     "start": "node dist/index.js",
     "types": "tsc --build",
     "lint": "eslint",
@@ -22,15 +22,18 @@
     "pacote": "^21.0.1"
   },
   "devDependencies": {
+    "@codedependant/semantic-release-docker": "^5.1.1",
     "@eslint/compat": "^1.3.2",
     "@eslint/js": "^9.35.0",
     "@types/node": "^24.3.1",
     "@types/pacote": "^11.1.8",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
     "eslint": "^9.35.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-perfectionist": "^4.15.0",
     "eslint-plugin-unicorn": "^61.0.2",
     "prettier": "^3.6.2",
+    "semantic-release": "^24.2.8",
     "tsdown": "^0.15.1",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.43.0"

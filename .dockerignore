@@ -1,0 +1,12 @@
+.dockerignore
+.env
+.git
+.github
+.gitignore
+.npmrc
+.nvmrc
+dist
+Dockerfile
+eslint.config.js
+node_modules
+release.config.js
