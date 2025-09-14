@@ -128,6 +128,18 @@ new CronJob(
 );
 
 await discordClient.send({
-  content: "NPM Version Notifier started",
+  embeds: [
+    {
+      description: `**Watching the following packages:**\n${Object.entries(
+        releases
+      )
+        .map(
+          ([spec, release]) =>
+            `[${spec}](${release.repository?.url ?? release.packageUrl}) (current version: ${release.version})`
+        )
+        .join("\n")}`,
+      title: "NPM Version Notifier started",
+    },
+  ],
   username: "npm-version-notifier",
 });
