@@ -102,7 +102,7 @@ async function notify(release: Release) {
   await discordClient.send({
     embeds: [
       {
-        description: notes,
+        description: notes?.slice(0, 4096),
         title: `${release.name}@${release.version}`,
         url: release.repository?.url ?? release.packageUrl,
       },
@@ -117,15 +117,15 @@ const releases = Object.fromEntries(
   )
 );
 
-new CronJob(
-  process.env.CRON_TIME,
-  async () => {
+CronJob.from({
+  cronTime: process.env.CRON_TIME,
+  onTick: async () => {
     await Promise.all(specs.map((spec) => checkRelease(spec)));
   },
-  undefined,
-  true,
-  "utc"
-);
+  start: true,
+  timeZone: "utc",
+  waitForCompletion: true,
+});
 
 await discordClient.send({
   embeds: [
