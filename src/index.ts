@@ -63,7 +63,7 @@ async function getRelease(spec: string) {
   if (!repositoryUrl?.startsWith("git+https://github.com/")) return release;
 
   const match = /^git\+https:\/\/github\.com\/(.+)\/(.+)\.git$/.exec(
-    repositoryUrl
+    repositoryUrl,
   );
   if (!match) return release;
   const [, owner, repo] = match;
@@ -85,7 +85,7 @@ async function getReleaseNotes(release: Release) {
         owner: release.repository.owner,
         repo: release.repository.repo,
         tag: `v${release.version}`,
-      }
+      },
     );
     const notes = githubRelease.data.body;
     if (!notes) return;
@@ -113,8 +113,8 @@ async function notify(release: Release) {
 
 const releases = Object.fromEntries(
   await Promise.all(
-    specs.map(async (spec) => [spec, await getRelease(spec)] as const)
-  )
+    specs.map(async (spec) => [spec, await getRelease(spec)] as const),
+  ),
 );
 
 CronJob.from({
@@ -131,11 +131,11 @@ await discordClient.send({
   embeds: [
     {
       description: `**Watching the following packages:**\n${Object.entries(
-        releases
+        releases,
       )
         .map(
           ([spec, release]) =>
-            `[${spec}](${release.repository?.url ?? release.packageUrl}) (current version: ${release.version})`
+            `[${spec}](${release.repository?.url ?? release.packageUrl}) (current version: ${release.version})`,
         )
         .join("\n")}`,
       title: "NPM Version Notifier started",
